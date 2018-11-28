@@ -5,14 +5,14 @@
       "Thinkphp",
       "auth"
     ],
-    "homepage": "https://github.com/Ghost-die/ghost-tools",
+    "homepage": "https://github.com/Ghost-die/tools",
     "type": "thinkphp5-extension",
     "license": "Apache-2.0",
     "support": {
-      "source": "https://github.com/Ghost-die/ghost-tools"
+      "source": "https://github.com/Ghost-die/tools"
     },
     "repositories": [
-        {"type": "vcs", "url": "https://github.com/Ghost-die/ghost-tools.git"}
+        {"type": "vcs", "url": "https://github.com/Ghost-die/tools.git"}
     ],
     "authors": [
         {
