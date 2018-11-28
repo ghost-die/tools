@@ -22,7 +22,10 @@
     ],
     "require": {
         "php": ">=7.1.2",
-        "ext-curl": "*"
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-iconv": "*",
+        "ext-openssl": "*"
     },
     "autoload": {
         "psr-4": {
