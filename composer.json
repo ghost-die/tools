@@ -1,0 +1,32 @@
+{
+    "name": "ghost-tools/auth",
+    "description": "Tools",
+    "keywords": [
+      "Thinkphp",
+      "auth"
+    ],
+    "homepage": "https://github.com/Ghost-die/ghost-tools",
+    "type": "thinkphp5-extension",
+    "license": "Apache-2.0",
+    "support": {
+      "source": "https://github.com/Ghost-die/ghost-tools"
+    },
+    "repositories": [
+        {"type": "vcs", "url": "https://github.com/Ghost-die/ghost-tools.git"}
+    ],
+    "authors": [
+        {
+            "name": "Ghost",
+            "email": "wq1436@hotmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "ghost\\": "src/"
+        }
+    }
+}
