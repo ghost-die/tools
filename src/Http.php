@@ -15,33 +15,50 @@ namespace ghost;
 class Http
 {
 
-    /**
-     * 发送一个POST请求
-     */
-    public static function post($url, $params = [], $options = [])
+	/**
+	 * 发送一个POST请求
+	 *
+	 * @param       $url
+	 * @param array $params
+	 * @param int   $time_out
+	 * @param array $options
+	 *
+	 * @return mixed|string
+	 */
+    public static function post(string $url, array $params = [],int $time_out = 3 ,array $options = [])
     {
-        $req = self::sendRequest($url, $params, 'POST', $options);
+        $req = self::sendRequest($url, $params, 'POST',$time_out, $options);
         return $req['ret'] ? $req['msg'] : '';
     }
 
-    /**
-     * 发送一个GET请求
-     */
-    public static function get($url, $params = [], $options = [])
+	/**
+	 * 发送一个GET请求
+	 *
+	 * @param       $url
+	 * @param array $params
+	 * @param int   $time_out
+	 * @param array $options
+	 *
+	 * @return mixed|string
+	 */
+    public static function get($url, $params = [],$time_out = 3 , $options = [])
     {
-        $req = self::sendRequest($url, $params, 'GET', $options);
+        $req = self::sendRequest($url, $params, 'GET', $time_out , $options);
         return $req['ret'] ? $req['msg'] : '';
     }
 
-    /**
-     * CURL发送Request请求,含POST和REQUEST
-     * @param string $url 请求的链接
-     * @param mixed $params 传递的参数
-     * @param string $method 请求的方法
-     * @param mixed $options CURL的参数
-     * @return array
-     */
-    public static function sendRequest($url, $params = [], $method = 'POST', $options = [])
+	/**
+	 * CURL发送Request请求,含POST和REQUEST
+	 *
+	 * @param string $url     请求的链接
+	 * @param mixed  $params  传递的参数
+	 * @param string $method  请求的方法
+	 * @param int    $time_out
+	 * @param mixed  $options CURL的参数
+	 *
+	 * @return array
+	 */
+    public static function sendRequest($url, $params = [], $method = 'POST', $time_out = 3, $options = [])
     {
         $method = strtoupper($method);
         $protocol = substr($url, 0, 5);
@@ -73,7 +90,7 @@ class Http
         $defaults[CURLOPT_FOLLOWLOCATION] = TRUE;
         $defaults[CURLOPT_RETURNTRANSFER] = TRUE;
         $defaults[CURLOPT_CONNECTTIMEOUT] = 3;
-        $defaults[CURLOPT_TIMEOUT] = 3;
+        $defaults[CURLOPT_TIMEOUT] = $time_out;
 
         // disable 100-continue
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect:'));
@@ -108,14 +125,17 @@ class Http
         ];
     }
 
-    /**
-     * 异步发送一个请求
-     * @param string $url 请求的链接
-     * @param mixed $params 请求的参数
-     * @param string $method 请求的方法
-     * @return boolean TRUE
-     */
-    public static function sendAsyncRequest($url, $params = [], $method = 'POST')
+	/**
+	 * 异步发送一个请求
+	 *
+	 * @param string $url    请求的链接
+	 * @param mixed  $params 请求的参数
+	 * @param string $method 请求的方法
+	 * @param int    $time_out
+	 *
+	 * @return boolean TRUE
+	 */
+    public static function sendAsyncRequest(string $url,array $params = [], string $method = 'POST',int $time_out = 3)
     {
         $method = strtoupper($method);
         $method = $method == 'POST' ? 'POST' : 'GET';
@@ -143,7 +163,7 @@ class Http
         }
         $parts['query'] = isset($parts['query']) && $parts['query'] ? '?' . $parts['query'] : '';
         //发送socket请求,获得连接句柄
-        $fp = fsockopen($parts['host'], isset($parts['port']) ? $parts['port'] : 80, $errno, $errstr, 3);
+        $fp = fsockopen($parts['host'], isset($parts['port']) ? $parts['port'] : 80, $errno, $errstr, $time_out);
         if (!$fp)
             return FALSE;
         //设置超时时间
