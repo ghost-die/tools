@@ -3,7 +3,7 @@
     "description": "Tools",
     "keywords": [
       "Thinkphp",
-      "auth"
+      "laravel"
     ],
     "homepage": "https://github.com/Ghost-die/tools",
     "type": "thinkphp5-extension",
