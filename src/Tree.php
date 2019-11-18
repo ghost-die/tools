@@ -14,7 +14,9 @@ class Tree
 {
     protected static $instance;
     //默认配置
-    protected $config = [];
+    protected $config = [
+    	'child_name' =>'childlist'
+    ];
     public $options = [];
 
     /**
@@ -30,7 +32,8 @@ class Tree
     public $icon = array('│', '├', '└');
     public $nbsp = "&nbsp;";
     public $pidname = 'pid';
-
+    
+    
     public function __construct($options = [])
     {
 
@@ -440,7 +443,7 @@ class Tree
                 $spacer = $itemprefix ? $itemprefix . $j : '';
                 $value['spacer'] = $spacer;
                 $data[$n] = $value;
-                $data[$n]['childlist'] = $this->getTreeArray($id, $itemprefix . $k . $this->nbsp);
+                $data[$n][$this->config['child_name']] = $this->getTreeArray($id, $itemprefix . $k . $this->nbsp);
                 $n++;
                 $number++;
             }
@@ -458,8 +461,8 @@ class Tree
         $arr = [];
         foreach ($data as $k => $v)
         {
-            $childlist = isset($v['childlist']) ? $v['childlist'] : [];
-            unset($v['childlist']);
+            $childlist = isset($v[$this->config['child_name']]) ? $v[$this->config['child_name']] : [];
+            unset($v[$this->config['child_name']]);
             $v[$field] = $v['spacer'] . ' ' . $v[$field];
             $v['haschild'] = $childlist ? 1 : 0;
             if ($v['id'])
