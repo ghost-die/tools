@@ -443,7 +443,7 @@ class Tree
                 $spacer = $itemprefix ? $itemprefix . $j : '';
                 $value['spacer'] = $spacer;
                 $data[$n] = $value;
-                $data[$n][$this->config['child_name']] = $this->getTreeArray($id, $itemprefix . $k . $this->nbsp);
+                $data[$n][$this->options['child_name']] = $this->getTreeArray($id, $itemprefix . $k . $this->nbsp);
                 $n++;
                 $number++;
             }
@@ -461,8 +461,8 @@ class Tree
         $arr = [];
         foreach ($data as $k => $v)
         {
-            $childlist = isset($v[$this->config['child_name']]) ? $v[$this->config['child_name']] : [];
-            unset($v[$this->config['child_name']]);
+            $childlist = isset($v[$this->options['child_name']]) ? $v[$this->options['child_name']] : [];
+            unset($v[$this->options['child_name']]);
             $v[$field] = $v['spacer'] . ' ' . $v[$field];
             $v['haschild'] = $childlist ? 1 : 0;
             if ($v['id'])
