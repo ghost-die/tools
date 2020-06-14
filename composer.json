@@ -6,7 +6,7 @@
       "laravel"
     ],
     "homepage": "https://github.com/Ghost-die/tools",
-    "type": "thinkphp5-extension",
+    "type": "extension",
     "license": "Apache-2.0",
     "support": {
       "source": "https://github.com/Ghost-die/tools"
